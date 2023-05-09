@@ -46,3 +46,7 @@ footer div{
     background-color: #f7afff;
     height: 5vh;
 }
+table {
+    display: flex;
+    justify-content: center;
+}

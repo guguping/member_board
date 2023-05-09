@@ -63,3 +63,32 @@ constraint fk_member_comment foreign key (memberId) references members_table(id)
 ```
 
 #### DTO 5개 생성
+
+## Save
+```html
+<input type="file" accept="image/*" name="memberProfile" id="memberProfile" multiple style="display: none">
+```
+#### input file에 accept = "image/*"를 붙여주면 이미지 파일만 선택이 가능하게 바뀐다
+
+```javascript
+<tr>
+    <th>
+        <label for="memberProfile">증명사진</label>
+    </th>
+</tr>
+<tr>
+    <th>
+        <p id="fileName"></p>
+    </th>
+</tr>
+<tr>
+    <th>
+        <input type="file" accept="image/*" name="memberProfile" id="memberProfile"
+                multiple style="display: none"
+                onchange="javascript:document.getElementById('fileName').innerHTML =
+                (this.value.replace(/c:\\fakepath\\/i,''))">
+    </th>
+</tr>
+```
+#### input 태그의 file로 업로드하면 이쁘지 않기 때문에 label을 통해 덮어씌움 이후 파일의 이름을 화면에 출력해주기 위해
+#### p태그의 innerHTML에 input의 value를 넣어줌 경로는 지우기 위해 replace를 사용하였다

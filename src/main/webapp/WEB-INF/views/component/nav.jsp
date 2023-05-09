@@ -2,7 +2,7 @@
 <nav>
     <div>
         <ul>
-            <li><a href="#">회원가입</a></li>
+            <li><a href="/member/save">회원가입</a></li>
             <li><a href="#">로그인</a></li>
             <li><a href="#">글목록</a></li>
         </ul>
