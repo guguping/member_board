@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+header div{
+    background-color: #f7afff;
+    height: 10vh;
+}
+header div h2{
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    text-shadow: 6px 2px 2px gray;
+}
+nav div {
+    background-color: #caafff;
+    height: 5vh;
+}
+nav div ul {
+    list-style: none;
+}
+nav div ul li{
+    float: left;
+    padding: 10px;
+    font-weight: bold;
+}
+nav div ul li a{
+    text-decoration: none;
+    color: white;
+}
+nav div ul li a:hover{
+    text-shadow: 6px 2px 2px gray;
+}
+section div {
+    background-color: #9fbef8;
+    height: 80vh;
+}
+section div h2 {
+    display: flex;
+    justify-content: center;
+}
+footer div{
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    background-color: #f7afff;
+    height: 5vh;
+}

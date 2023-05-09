@@ -61,3 +61,5 @@ constraint fk_board_comment foreign key (boardId) references memberBoard_table(i
 constraint fk_member_comment foreign key (memberId) references members_table(id) on delete cascade
 );
 ```
+
+#### DTO 5개 생성
