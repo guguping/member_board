@@ -2,9 +2,13 @@
     box-sizing: border-box;
     margin: 0;
 }
-header div{
+body{
+    height: 100vh;
+}
+header {
     background-color: #f7afff;
     height: 10vh;
+    width: 100%;
 }
 header div h2{
     display: flex;
@@ -12,9 +16,10 @@ header div h2{
     justify-content: center;
     text-shadow: 6px 2px 2px gray;
 }
-nav div {
+nav {
     background-color: #caafff;
     height: 5vh;
+    width: 100%;
 }
 nav div ul {
     list-style: none;
@@ -31,23 +36,27 @@ nav div ul li a{
 nav div ul li a:hover{
     text-shadow: 6px 2px 2px gray;
 }
-section div {
-    background-color: #9fbef8;
-    height: 80vh;
-}
-section div h2 {
+section {
     display: flex;
     justify-content: center;
+    background-color: #9fbef8;
+    height: 80vh;
+    width: 100%;
+    /*overflow-y: scroll;*/
 }
-footer div{
+/*section div h2 {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+footer {
     display: flex;
     justify-content: center;
     padding: 12px;
     background-color: #f7afff;
     height: 5vh;
 }
-table {
-    display: flex;
-    justify-content: center;
-}
+/*table {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 

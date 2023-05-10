@@ -16,7 +16,7 @@
 <%@include file="../component/nav.jsp" %>
 <section>
     <div>
-        <h2>회원가입 페이지</h2>
+        <h2 style="text-align: center">회원가입 페이지</h2>
         <form action="/member/save" method="post" enctype="multipart/form-data">
             <table>
                 <tr>

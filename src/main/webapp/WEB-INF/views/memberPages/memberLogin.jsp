@@ -17,7 +17,7 @@
 <%@include file="../component/nav.jsp" %>
 <section>
     <div>
-        <h2>memberLogin</h2>
+        <h2 style="text-align: center">memberLogin</h2>
         <form action="/member/login" method="post">
             <table>
                 <tr>

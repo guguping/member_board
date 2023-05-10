@@ -1,17 +1,16 @@
 package com.icia.member_board.controller;
 
 import com.icia.member_board.dto.memberDTO;
+import com.icia.member_board.dto.pageDTO;
 import com.icia.member_board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -25,11 +24,6 @@ public class MemberController {
     public String saveMember(@ModelAttribute memberDTO memberDTO) throws IOException {
         System.out.println("memberDTO = " + memberDTO);
         memberService.saveMember(memberDTO);
-        return "memberPages/memberList";
-    }
-    @GetMapping("/member/list")
-    public String memberList(){
-
         return "memberPages/memberList";
     }
     @GetMapping("/member/login")
@@ -47,6 +41,26 @@ public class MemberController {
             model.addAttribute("loginFalse",loginFalse);
             return "memberPages/memberLogin";
         }
+    }
+    @GetMapping("/member/list")
+    public String memberList(@RequestParam(value = "page", required = false,defaultValue = "1")int page,
+                             @RequestParam(value = "q",required = false,defaultValue = "") String q,
+                             @RequestParam(value = "type",required = false,defaultValue = "memberEmail") String type,
+                             Model model){
+        List<memberDTO> memberDTOList = null;
+        pageDTO pageDTO = null;
+        if(q.equals("")) {
+            memberDTOList = memberService.memberList(page);
+            pageDTO = memberService.pagingParam(page);
 
+        } else {
+            memberDTOList = memberService.memberSearchList(page,type,q);
+            pageDTO = memberService.searchPagingParam(page,type,q);
+        }
+        model.addAttribute("memberList",memberDTOList);
+        model.addAttribute("paging",pageDTO);
+        model.addAttribute("q",q);
+        model.addAttribute("type",type);
+        return "memberPages/memberList";
     }
 }

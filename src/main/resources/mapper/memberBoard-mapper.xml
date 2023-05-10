@@ -15,4 +15,16 @@
     <select id="loginMember" parameterType="member" resultType="member">
         select * from members_table where memberEmail = #{memberEmail} and memberPassword = #{memberPassword}
     </select>
+    <select id="memberList" parameterType="java.util.HashMap" resultType="member">
+        select * from members_table order by id asc limit #{start},#{limit}
+    </select>
+    <select id="memberCount" resultType="Integer">
+        select count(id) from members_table
+    </select>
+    <select id="memberSearch" parameterType="java.util.HashMap" resultType="member">
+        select * from members_table where ${type} like concat('%', #{q}, '%') order by id asc limit #{start}, #{limit}
+    </select>
+    <select id="searchCount" parameterType="java.util.HashMap" resultType="Integer">
+        select count(id) from members_table where ${type} like concat('%',#{q},'%')
+    </select>
 </mapper>
