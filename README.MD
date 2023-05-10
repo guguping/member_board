@@ -92,3 +92,22 @@ constraint fk_member_comment foreign key (memberId) references members_table(id)
 ```
 #### input 태그의 file로 업로드하면 이쁘지 않기 때문에 label을 통해 덮어씌움 이후 파일의 이름을 화면에 출력해주기 위해
 #### p태그의 innerHTML에 input의 value를 넣어줌 경로는 지우기 위해 replace를 사용하였다
+
+## ICIA DAY 55 - SAVE 사진 프리뷰
+```javascript
+    function readImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader()
+            reader.onload = e => {
+                const previewImage = document.getElementById("preview-image")
+                previewImage.src = e.target.result
+            }
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+    const memberProfile = document.getElementById("memberProfile")
+    memberProfile.addEventListener("change", e => {
+        readImage(e.target)
+    })
+```
+#### 공부 필요 SAVE.JSP에 추가함
