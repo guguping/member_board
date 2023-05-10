@@ -39,19 +39,19 @@
                 </tr>
                 <tr>
                     <th>
-                        <label for="memberProfile">증명사진</label>
+                        <label for="memberFile">증명사진</label>
                         <button style="display: inline-block" type="button">
-                            <label for="memberProfile">등록</label>
+                            <label for="memberFile">등록</label>
                         </button>
                     </th>
                 </tr>
                 <tr>
-                    <th>
-                        <input type="file" accept="image/*" name="memberProfile" id="memberProfile"
-                               multiple style="display: none"
+                    <th style="padding: 5px">
+                        <input type="file" accept="image/*" name="memberFile" id="memberFile"
+                               style="display: none"
                                onchange="javascript:document.getElementById('fileName').innerHTML =
                                 (this.value.replace(/c:\\fakepath\\/i,''))">
-                        <img style="width: 100px;height: 100px" id="preview-image">
+                        <img style="width: 100px;height: 100px;border: 1px solid black" id="preview-image">
                     </th>
                 </tr>
                 <tr>
@@ -86,10 +86,10 @@
             reader.readAsDataURL(input.files[0])
         }
     }
-    const memberProfile = document.getElementById("memberProfile")
-    memberProfile.addEventListener("change", e => {
+
+    const memberFile = document.getElementById("memberFile")
+    memberFile.addEventListener("change", e => {
         readImage(e.target)
     })
-
 </script>
 </html>

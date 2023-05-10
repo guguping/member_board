@@ -4,5 +4,12 @@
 
 
 <mapper namespace="memberboard">
-
+    <insert id="save" parameterType="member" useGeneratedKeys="true" keyProperty="id">
+        insert into members_table(memberEmail ,memberPassword ,memberMobile ,memberProfile)
+            value(#{memberEmail},#{memberPassword},#{memberMobile},#{memberProfile})
+    </insert>
+    <insert id="saveFile" parameterType="memberFile">
+        insert into member_file_table(originalFileName,storedFileName,memberId)
+            value(#{originalFileName},#{storedFileName},#{memberId})
+    </insert>
 </mapper>

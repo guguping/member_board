@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-<!--        <typeAlias type="com.icia.board.dto.BoardDTO" alias="board"></typeAlias>-->
-<!--        <typeAlias type="com.icia.board.dto.BoardFileDTO" alias="boardFile"></typeAlias>-->
+        <typeAlias type="com.icia.member_board.dto.memberDTO" alias="member"></typeAlias>
+        <typeAlias type="com.icia.member_board.dto.memberFileDTO" alias="memberFile"></typeAlias>
 <!--        <typeAlias type="com.icia.board.dto.CommentDTO" alias="comment"></typeAlias>-->
     </typeAliases>
 </configuration>
