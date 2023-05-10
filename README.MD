@@ -110,4 +110,4 @@ constraint fk_member_comment foreign key (memberId) references members_table(id)
         readImage(e.target)
     })
 ```
-#### 공부 필요 SAVE.JSP에 추가함
+#### 공부 필요 memberSave.JSP에 추가함

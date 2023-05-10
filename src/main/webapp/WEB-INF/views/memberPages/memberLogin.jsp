@@ -10,6 +10,7 @@
 <head>
     <title>memberLogin</title>
     <link rel="stylesheet" href="/resources/css/style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 <body>
 <%@include file="../component/header.jsp" %>
@@ -23,18 +24,19 @@
                     <th style="padding: 5px"><label for="memberEmail">이메일</label></th>
                 </tr>
                 <tr>
-                    <th><input type="text" name="memberEmail" id="memberEmail">
-                        <p id="emailResult"></p></th>
+                    <th><input type="text" name="memberEmail" id="memberEmail"></th>
                 </tr>
                 <tr>
                     <th><label for="memberPassword">비밀번호</label></th>
                 </tr>
                 <tr>
-                    <th style="padding: 5px"><input type="text" name="memberPassword" id="memberPassword">
-                        <p id="passwordResult"></p></th>
+                    <th style="padding: 5px"><input type="text" name="memberPassword" id="memberPassword"></th>
                 </tr>
                 <tr>
-                    <th style="padding: 5px"><input type="button" value="로그인" style="display:inline-block;"></th>
+                    <th><p style="color: red">${loginFalse}</p></th>
+                </tr>
+                <tr>
+                    <th style="padding: 5px"><input type="submit" value="로그인" style="display:inline-block;"></th>
                 </tr>
             </table>
         </form>
@@ -42,4 +44,6 @@
 </section>
 <%@include file="../component/footer.jsp" %>
 </body>
+<script>
+</script>
 </html>

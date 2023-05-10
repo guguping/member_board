@@ -19,4 +19,8 @@ public class MemberRepository {
     public void saveFile(memberFileDTO memberFileDTO) {
         sql.insert("memberboard.saveFile",memberFileDTO);
     }
+
+    public memberDTO loginMember(memberDTO memberDTO) {
+        return sql.selectOne("memberboard.loginMember",memberDTO);
+    }
 }
