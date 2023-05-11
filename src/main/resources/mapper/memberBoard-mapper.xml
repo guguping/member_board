@@ -5,37 +5,70 @@
 
 <mapper namespace="memberboard">
     <insert id="save" parameterType="member" useGeneratedKeys="true" keyProperty="id">
-        insert into members_table(memberEmail ,memberPassword ,memberMobile ,memberProfile)
-            value(#{memberEmail},#{memberPassword},#{memberMobile},#{memberProfile})
+        insert into members_table(memberEmail, memberPassword, memberMobile, memberProfile)
+            value (#{memberEmail},#{memberPassword},#{memberMobile},#{memberProfile})
     </insert>
     <insert id="saveFile" parameterType="memberFile">
-        insert into member_file_table(originalFileName,storedFileName,memberId)
-            value(#{originalFileName},#{storedFileName},#{memberId})
+        insert into member_file_table(originalFileName, storedFileName, memberId)
+            value (#{originalFileName},#{storedFileName},#{memberId})
     </insert>
     <select id="loginMember" parameterType="member" resultType="member">
-        select * from members_table where memberEmail = #{memberEmail} and memberPassword = #{memberPassword}
+        select *
+        from members_table
+        where memberEmail = #{memberEmail}
+          and memberPassword = #{memberPassword}
     </select>
     <select id="memberList" parameterType="java.util.HashMap" resultType="member">
-        select * from members_table order by id asc limit #{start},#{limit}
+        select *
+        from members_table
+        order by id asc limit #{start}, #{limit}
     </select>
     <select id="memberCount" resultType="Integer">
-        select count(id) from members_table
+        select count(id)
+        from members_table
     </select>
     <select id="memberSearch" parameterType="java.util.HashMap" resultType="member">
-        select * from members_table where ${type} like concat('%', #{q}, '%') order by id asc limit #{start}, #{limit}
+        select *
+        from members_table
+        where ${type} like concat('%', #{q}, '%')
+        order by id asc limit #{start}, #{limit}
     </select>
     <select id="searchCount" parameterType="java.util.HashMap" resultType="Integer">
-        select count(id) from members_table where ${type} like concat('%',#{q},'%')
+        select count(id)
+        from members_table
+        where ${type} like concat('%' ,#{q}, '%')
     </select>
     <select id="findById" parameterType="Long" resultType="member">
-        select * from members_table where id = #{memberID}
+        select *
+        from members_table
+        where id = #{memberID}
     </select>
     <insert id="boardsave" parameterType="board" useGeneratedKeys="true" keyProperty="id">
-        insert into memberBoard_table(boardTitle,boardWriter,boardContents,memberId,fileAttached)
-            value(#{boardTitle},#{boardWriter},#{boardContents},#{memberId},#{fileAttached})
+        insert into memberBoard_table(boardTitle, boardWriter, boardContents, memberId, fileAttached)
+            value (#{boardTitle},#{boardWriter},#{boardContents},#{memberId},#{fileAttached})
     </insert>
     <insert id="boardSaveFile" parameterType="boardFile">
-        insert into memberBoard_file_table(originalFileName,storedFileName,boardId)
+        insert into memberBoard_file_table(originalFileName, storedFileName, boardId)
             value (#{originalFileName},#{storedFileName},#{boardId})
     </insert>
+    <select id="boardList" parameterType="java.util.HashMap" resultType="board">
+        select *
+        from memberBoard_table
+        order by id asc limit #{start}, #{limit}
+    </select>
+    <select id="boardCount" resultType="Integer">
+        select count(id)
+        from memberBoard_table
+    </select>
+    <select id="boardSearchList" parameterType="java.util.HashMap" resultType="board">
+        select *
+        from memberBoard_table
+        where ${type} like concat('%', #{q}, '%')
+        order by id asc limit #{start}, #{limit}
+    </select>
+    <select id="boardSearchCount" parameterType="java.util.HashMap" resultType="Integer">
+        select count(id)
+        from memberBoard_table
+        where ${type} like concat('%', #{q}, '%')
+    </select>
 </mapper>

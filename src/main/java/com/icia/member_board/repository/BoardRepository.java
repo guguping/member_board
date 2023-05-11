@@ -7,6 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public class BoardRepository {
     @Autowired
@@ -24,5 +27,21 @@ public class BoardRepository {
 
     public void boardSaveFile(memberBoardFileDTO memberBoardFileDTO) {
         sql.insert("memberboard.boardSaveFile",memberBoardFileDTO);
+    }
+
+    public List<memberBoardDTO> boardList(Map<String, Integer> listParams) {
+        return sql.selectList("memberboard.boardList",listParams);
+    }
+
+    public int boardCount() {
+        return sql.selectOne("memberboard.boardCount");
+    }
+
+    public List<memberBoardDTO> boardSearchList(Map<String, Object> pagingParams) {
+        return sql.selectList("memberboard.boardSearchList",pagingParams);
+    }
+
+    public int boardSearchCount(Map<String, Object> paginParams) {
+        return sql.selectOne("memberboard.boardSearchCount",paginParams);
     }
 }
