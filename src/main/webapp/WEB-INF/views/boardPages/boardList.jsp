@@ -32,20 +32,25 @@
                 <tr>
                     <td style="text-align: center">
                         <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
-                        style="text-decoration: none;color: black;">${boardList.id}</a>
+                           style="text-decoration: none;color: black;">${boardList.id}</a>
                     </td>
                     <td style="text-align: center">
-                        <a>${boardList.boardTitle}</a>
+                        <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
+                           style="text-decoration: none;color: black;">${boardList.boardTitle}</a>
                     </td>
                     <td style="text-align: center">
-                        <a>${boardList.boardWriter}</a>
+                        <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
+                           style="text-decoration: none;color: black;">${boardList.boardWriter}</a>
                     </td>
                     <td style="text-align: center">
-                        <a>${boardList.boardHits}</a>
+                        <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
+                           style="text-decoration: none;color: black;">${boardList.boardHits}</a>
                     </td>
                     <td style="text-align: center">
-                        <a><fmt:formatDate value="${boardList.boardCreatedDate}"
-                                           pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></a>
+                        <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
+                           style="text-decoration: none;color: black;"><fmt:formatDate
+                                value="${boardList.boardCreatedDate}"
+                                pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></a>
                     </td>
                 </tr>
             </c:forEach>

@@ -15,4 +15,8 @@ public class CommentService {
     public List<memberBoardCommentDTO> boardComment(Long id) {
         return commentRepository.boardComment(id);
     }
+
+    public void save(memberBoardCommentDTO memberBoardCommentDTO) {
+        commentRepository.save(memberBoardCommentDTO);
+    }
 }

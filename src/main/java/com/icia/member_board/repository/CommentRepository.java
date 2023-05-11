@@ -15,4 +15,8 @@ public class CommentRepository {
     public List<memberBoardCommentDTO> boardComment(Long id) {
         return sql.selectList("memberboard.boardComment",id);
     }
+
+    public void save(memberBoardCommentDTO memberBoardCommentDTO) {
+        sql.insert("memberboard.commentSave",memberBoardCommentDTO);
+    }
 }

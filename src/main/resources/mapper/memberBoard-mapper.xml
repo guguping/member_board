@@ -83,4 +83,8 @@
     <select id="boardComment" parameterType="Long" resultType="comment">
         select * from member_board_comment_table where boardId=#{id} order by id asc
     </select>
+    <insert id="commentSave" parameterType="comment">
+        insert into member_board_comment_table(commentWriter,commentContents,boardId)
+            values (#{commentWriter},#{commentContents},#{boardId})
+    </insert>
 </mapper>

@@ -62,8 +62,8 @@
         </tr>
         <tr>
             <th colspan="6">
-                <input type="button" value="수정" onclick="goUpdate(${boardDTO.id})">
-                <input type="button" value="삭제" onclick="goDelete(${boardDTO.id})">
+                <input type="button" value="수정" onclick="goUpdate()">
+                <input type="button" value="삭제" onclick="goDelete()">
                 <input type="button" value="목록" onclick="goList()">
             </th>
         </tr>
@@ -104,7 +104,7 @@
         <tfoot>
         <tr>
             <th colspan="6"><label for="commentWriter" style="float: left">작성자: </label>
-                <input type="text" name="commentWriter" id="commentWriter" style="float: left">
+                <input type="text" name="commentWriter" id="commentWriter" value="${memberDTO.memberEmail}" readonly style="float: left">
                 <label for="commentContents" style="margin-right: 187px">내용</label>
                 <input type="button" value="등록" style="float: right" onclick="helloComment(${boardDTO.id})">
             </th>
@@ -118,7 +118,54 @@
 <%@include file="../component/footer.jsp" %>
 </body>
 <script>
+    const goUpdate = () => {
 
+    }
+    const goDelete = () => {
+
+    }
+    const goList = () => {
+        const type = '${type}';
+        const q = '${q}';
+        const page = '${page}';
+        location.href = "/board/list?page="+page +"&type="+type + "&q=" +q;
+    }
+    const helloComment = (id) => {
+        const commentWriter = document.getElementById('commentWriter').value;
+        const commentContents = document.getElementById('commentContents').value;
+        const boardId = id;
+        const commentResult = document.getElementById('commentResult');
+        $.ajax({
+            type: "post",
+            url: "/comment/save",
+            data: {
+                "commentWriter": commentWriter,
+                "commentContents": commentContents,
+                "boardId": boardId
+            },
+            success: function (res) {
+                let output = "<tr>";
+                output += "<th>id</th>";
+                output += "<th>작성자</th>";
+                output += "<th>내용</th>";
+                output += "<th>작성시간</th>";
+                output += "</tr>";
+                for (let i in res) {
+                    output += "<tr>";
+                    output += "<th>" + res[i].id + "</th>";
+                    output += "<th>" + res[i].commentWriter + "</th>";
+                    output += "<th>" + res[i].commentContents + "</th>";
+                    output += "<th>" + moment(res[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss") + "</th>";
+                    output += "</tr>";
+                }
+                commentResult.innerHTML = output;
+                document.getElementById('commentContents').value = "";
+            },
+            error: function () {
+                console.log("실패");
+            }
+        })
+    }
     CKEDITOR.replace('editor1',{
         height : '450px'
     });

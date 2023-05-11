@@ -88,6 +88,7 @@ public class BoardController {
             model.addAttribute("cList",cList);
         }
         model.addAttribute("boardDTO",memberBoardDTO);
+        model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("page",page);
         model.addAttribute("q",q);
         model.addAttribute("type",type);
