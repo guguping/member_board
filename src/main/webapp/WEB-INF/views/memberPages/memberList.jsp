@@ -13,12 +13,21 @@
     <title>memberList</title>
     <link rel="stylesheet" href="/resources/css/style.css">
 </head>
+<style>
+    table {
+        margin: auto;
+        border: 1px solid black;
+    }
+    table tr th {
+        border: 1px solid black;
+    }
+</style>
 <body>
 <%@include file="../component/header.jsp" %>
 <%@include file="../component/nav.jsp" %>
 <section>
     <div>
-        <h2>memberList</h2>
+        <h2 style="text-align: center">memberList</h2>
         <table>
             <thead>
             <tr>
@@ -30,16 +39,16 @@
             </tr>
             <c:forEach items="${memberList}" var="member">
                 <tr>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a>${member.id}</a>
                     </td>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a>${member.memberEmail}</a>
                     </td>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a>${member.memberPassword}</a>
                     </td>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a>${member.memberMobile}</a>
                     </td>
                 </tr>
@@ -47,7 +56,7 @@
             </thead>
             <tbody>
             <tr>
-                <th colspan="4">
+                <th colspan="4" style="padding: 5px">
                     <form action="/member/list" method="get">
                         <select name="type">
                             <option value="memberEmail">아이디</option>
@@ -59,7 +68,7 @@
                 </th>
             </tr>
             <tr>
-                <th colspan="4"><c:choose>
+                <th colspan="4" style="padding: 5px"><c:choose>
                     <c:when test="${paging.page<=1}">
                         <a style="color: grey">[이전]</a>
                     </c:when>

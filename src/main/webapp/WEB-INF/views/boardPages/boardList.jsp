@@ -13,12 +13,21 @@
     <title>boardList</title>
     <link rel="stylesheet" href="/resources/css/style.css">
 </head>
+<style>
+    table {
+        margin: auto;
+        border: 1px solid black;
+    }
+    table tr th {
+        border: 1px solid black;
+    }
+</style>
 <body>
 <%@include file="../component/header.jsp" %>
 <%@include file="../component/nav.jsp" %>
 <section>
     <div>
-        <h2>BoardList</h2>
+        <h2 style="text-align: center">BoardList</h2>
         <table>
             <thead>
             <tr>
@@ -30,23 +39,23 @@
             </tr>
             <c:forEach items="${boardList}" var="boardList">
                 <tr>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
                            style="text-decoration: none;color: black;">${boardList.id}</a>
                     </td>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
                            style="text-decoration: none;color: black;">${boardList.boardTitle}</a>
                     </td>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
                            style="text-decoration: none;color: black;">${boardList.boardWriter}</a>
                     </td>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
                            style="text-decoration: none;color: black;">${boardList.boardHits}</a>
                     </td>
-                    <td style="text-align: center">
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
                            style="text-decoration: none;color: black;"><fmt:formatDate
                                 value="${boardList.boardCreatedDate}"
@@ -57,7 +66,7 @@
             </thead>
             <tbody>
             <tr>
-                <th colspan="5">
+                <th colspan="5" style="padding: 5px">
                     <form action="/board/list" method="get">
                         <select name="type">
                             <option value="boardTitle">제목</option>
@@ -70,12 +79,12 @@
                 </th>
             </tr>
             <tr>
-                <th colspan="5"><c:choose>
+                <th colspan="5" style="padding: 5px"><c:choose>
                     <c:when test="${paging.page<=1}">
                         <a style="color: grey">[이전]</a>
                     </c:when>
                     <c:otherwise>
-                        <a href="/member/list?page=${paging.page-1}&q=${q}&type=${type}"
+                        <a href="/board/list?page=${paging.page-1}&q=${q}&type=${type}"
                            style="text-decoration: none;color: black">[이전]</a>
                     </c:otherwise>
                 </c:choose>
@@ -85,7 +94,7 @@
                                 <a style="text-decoration: none;color: violet">${i}</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="/member/list?page=${i}&q=${q}&type=${type}"
+                                <a href="/board/list?page=${i}&q=${q}&type=${type}"
                                    style="text-decoration: none;color: black">${i}</a>
                             </c:otherwise>
                         </c:choose>
@@ -95,7 +104,7 @@
                             <a style="color: grey">[다음]</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="/member/list?page=${paging.page+1}&q=${q}&type=${type}"
+                            <a href="/board/list?page=${paging.page+1}&q=${q}&type=${type}"
                                style="text-decoration: none;color: black">[다음]</a>
                         </c:otherwise>
                     </c:choose></th>

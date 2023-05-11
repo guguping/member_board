@@ -75,7 +75,7 @@ public class BoardController {
                               @RequestParam(value = "type", required = false, defaultValue = "boardTitle") String type,
                               Model model,HttpSession session){
         memberDTO memberDTO = boardService.findById((Long)session.getAttribute("memberID"));
-        boardService.updateHits(memberDTO.getId());
+        boardService.updateHits(id);
         memberBoardDTO memberBoardDTO = boardService.boardDetail(id);
         if (memberBoardDTO.getFileAttached() == 1){
             List<memberBoardFileDTO> memberBoardFileDTOList = boardService.findFile(id);

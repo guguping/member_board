@@ -16,6 +16,15 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
+<style>
+    table {
+        margin: auto;
+        border: 1px solid black;
+    }
+    table tr th {
+        border: 1px solid black;
+    }
+</style>
 <body>
 <%@include file="../component/header.jsp" %>
 <%@include file="../component/nav.jsp" %>
@@ -31,17 +40,16 @@
         <tr>
             <th>글번호</th>
             <th>작성자</th>
-            <th>작성시간</th>
             <th>조회수</th>
+            <th>작성시간</th>
         </tr>
         <tr>
             <th>${boardDTO.id}</th>
             <th>${boardDTO.boardWriter}</th>
+            <th>${boardDTO.boardHits}</th>
             <th>
                 <fmt:formatDate value="${boardDTO.boardCreatedDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
             </th>
-            <%--            <th>${boardDTO.boardCreateDate}</th>--%>
-            <th>${boardDTO.boardHits}</th>
         </tr>
         <c:if test="${boardDTO.fileAttached == 1}">
             <tr>
