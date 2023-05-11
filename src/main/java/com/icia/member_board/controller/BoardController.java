@@ -1,9 +1,8 @@
 package com.icia.member_board.controller;
 
-import com.icia.member_board.dto.memberBoardDTO;
-import com.icia.member_board.dto.memberDTO;
-import com.icia.member_board.dto.pageDTO;
+import com.icia.member_board.dto.*;
 import com.icia.member_board.service.BoardService;
+import com.icia.member_board.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -21,6 +20,8 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/board/logout")
     public String boardLogout(HttpSession session){
@@ -65,6 +66,32 @@ public class BoardController {
         model.addAttribute("q",q);
         model.addAttribute("type",type);
         return "boardPages/boardList";
+    }
+
+    @GetMapping("/board/detail")
+    public String boardDetail(@RequestParam("id") Long id,
+                              @RequestParam(value = "page", required = false,defaultValue = "1") int page,
+                              @RequestParam(value = "q", required = false, defaultValue = "") String q,
+                              @RequestParam(value = "type", required = false, defaultValue = "boardTitle") String type,
+                              Model model,HttpSession session){
+        memberDTO memberDTO = boardService.findById((Long)session.getAttribute("memberID"));
+        boardService.updateHits(memberDTO.getId());
+        memberBoardDTO memberBoardDTO = boardService.boardDetail(id);
+        if (memberBoardDTO.getFileAttached() == 1){
+            List<memberBoardFileDTO> memberBoardFileDTOList = boardService.findFile(id);
+            model.addAttribute("boardFileList",memberBoardFileDTOList);
+        }
+        List<memberBoardCommentDTO> cList = commentService.boardComment(id);
+        if (cList.size() == 0){
+            model.addAttribute("cList",null);
+        } else {
+            model.addAttribute("cList",cList);
+        }
+        model.addAttribute("boardDTO",memberBoardDTO);
+        model.addAttribute("page",page);
+        model.addAttribute("q",q);
+        model.addAttribute("type",type);
+        return "boardPages/boardDetail";
     }
 
 }

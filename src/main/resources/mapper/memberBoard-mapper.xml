@@ -71,4 +71,16 @@
         from memberBoard_table
         where ${type} like concat('%', #{q}, '%')
     </select>
+    <update id="updateHits" parameterType="Long">
+        update memberBoard_table set boardHits = boardHits+1 where id=#{id}
+    </update>
+    <select id="boardDetail" parameterType="Long" resultType="board">
+        select * from memberBoard_table where id=#{id}
+    </select>
+    <select id="findFile" parameterType="Long" resultType="boardFile">
+        select * from memberBoard_file_table where boardId = #{boardId}
+    </select>
+    <select id="boardComment" parameterType="Long" resultType="comment">
+        select * from member_board_comment_table where boardId=#{id} order by id asc
+    </select>
 </mapper>

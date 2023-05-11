@@ -31,7 +31,8 @@
             <c:forEach items="${boardList}" var="boardList">
                 <tr>
                     <td style="text-align: center">
-                        <a>${boardList.id}</a>
+                        <a href="/board/detail?id=${boardList.id}&page=${paging.page}&q=${q}&type=${type}"
+                        style="text-decoration: none;color: black;">${boardList.id}</a>
                     </td>
                     <td style="text-align: center">
                         <a>${boardList.boardTitle}</a>

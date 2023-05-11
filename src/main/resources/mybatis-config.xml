@@ -7,5 +7,6 @@
         <typeAlias type="com.icia.member_board.dto.memberFileDTO" alias="memberFile"></typeAlias>
         <typeAlias type="com.icia.member_board.dto.memberBoardDTO" alias="board"></typeAlias>
         <typeAlias type="com.icia.member_board.dto.memberBoardFileDTO" alias="boardFile"></typeAlias>
+        <typeAlias type="com.icia.member_board.dto.memberBoardCommentDTO" alias="comment"></typeAlias>
     </typeAliases>
 </configuration>

@@ -105,4 +105,16 @@ public class BoardService {
         pageDTO.setEndPage(endPage);
         return pageDTO;
     }
+
+    public void updateHits(Long id) {
+        boardRepository.updateHits(id);
+    }
+
+    public memberBoardDTO boardDetail(Long id) {
+        return boardRepository.boardDetail(id);
+    }
+
+    public List<memberBoardFileDTO> findFile(Long id) {
+        return boardRepository.findFile(id);
+    }
 }
