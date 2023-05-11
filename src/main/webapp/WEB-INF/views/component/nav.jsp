@@ -21,7 +21,7 @@
                 </c:choose>
             </li>
             <c:choose>
-                <c:when test="${memberID == 999}">
+                <c:when test="${memberID == 1}">
                     <li>
                         <a href="/member/list">멤버리스트</a>
                     </li>

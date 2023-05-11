@@ -1,11 +1,43 @@
 package com.icia.member_board.service;
 
+import com.icia.member_board.dto.memberBoardDTO;
+import com.icia.member_board.dto.memberBoardFileDTO;
+import com.icia.member_board.dto.memberDTO;
 import com.icia.member_board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 @Service
 public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
+
+    public memberDTO findById(Long memberID) {
+        return boardRepository.findById(memberID);
+    }
+
+    public void boardSave(memberBoardDTO memberBoardDTO) throws IOException {
+        if (memberBoardDTO.getBoardFile().get(0).isEmpty()){
+            memberBoardDTO.setFileAttached(0);
+            boardRepository.boardSave(memberBoardDTO);
+        } else {
+            memberBoardDTO.setFileAttached(1);
+            memberBoardDTO dto = boardRepository.boardSave(memberBoardDTO);
+            for (MultipartFile boardFile : memberBoardDTO.getBoardFile()){
+                String originalFilename = boardFile.getOriginalFilename();
+                String storedFileName = System.currentTimeMillis() + "-"+originalFilename;
+                memberBoardFileDTO memberBoardFileDTO = new memberBoardFileDTO();
+                memberBoardFileDTO.setBoardId(dto.getId());
+                memberBoardFileDTO.setOriginalFileName(originalFilename);
+                memberBoardFileDTO.setStoredFileName(storedFileName);
+                String savePath = "D:\\springframework_img\\"+storedFileName;
+                boardFile.transferTo(new File(savePath));
+                boardRepository.boardSaveFile(memberBoardFileDTO);
+            }
+        }
+    }
 }

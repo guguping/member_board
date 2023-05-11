@@ -90,6 +90,16 @@ constraint fk_member_comment foreign key (memberId) references members_table(id)
     </th>
 </tr>
 ```
+#### 스크립트 형식으로 변환 & List에 담긴 파일이름 가져오기
+```javascript
+    const upFile = document.getElementById('boardFile');
+    const fileName = document.getElementById('fileName');
+
+    upFile.addEventListener('change',function (){
+        for(let j = 0; j < this.files.length; j++)
+        fileName.innerHTML += "["+this.files[j].name+"] ";
+    })
+```
 #### input 태그의 file로 업로드하면 이쁘지 않기 때문에 label을 통해 덮어씌움 이후 파일의 이름을 화면에 출력해주기 위해
 #### p태그의 innerHTML에 input의 value를 넣어줌 경로는 지우기 위해 replace를 사용하였다
 
@@ -111,3 +121,31 @@ constraint fk_member_comment foreign key (memberId) references members_table(id)
     })
 ```
 #### 공부 필요 memberSave.JSP에 추가함
+
+## iCIA DAY 56 - BOARDSAVE 다중 프리뷰
+```javascript
+    function readImages(input) {
+        if (input.files && input.files.length > 0) {
+            const previewImageContainer = document.getElementById("preview-image-container");
+
+            for (let i = 0; i < input.files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const previewImage = document.createElement("img");
+                    previewImage.style.width = "100px";
+                    previewImage.style.height = "100px";
+                    previewImage.style.border = "1px solid black";
+                    previewImage.src = e.target.result;
+                    previewImageContainer.appendChild(previewImage);
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    }
+
+    const memberFile = document.getElementById("boardFile");
+    memberFile.addEventListener("change", e => {
+        readImages(e.target);
+    });
+```
+

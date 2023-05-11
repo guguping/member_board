@@ -27,4 +27,15 @@
     <select id="searchCount" parameterType="java.util.HashMap" resultType="Integer">
         select count(id) from members_table where ${type} like concat('%',#{q},'%')
     </select>
+    <select id="findById" parameterType="Long" resultType="member">
+        select * from members_table where id = #{memberID}
+    </select>
+    <insert id="boardsave" parameterType="board" useGeneratedKeys="true" keyProperty="id">
+        insert into memberBoard_table(boardTitle,boardWriter,boardContents,memberId,fileAttached)
+            value(#{boardTitle},#{boardWriter},#{boardContents},#{memberId},#{fileAttached})
+    </insert>
+    <insert id="boardSaveFile" parameterType="boardFile">
+        insert into memberBoard_file_table(originalFileName,storedFileName,boardId)
+            value (#{originalFileName},#{storedFileName},#{boardId})
+    </insert>
 </mapper>
