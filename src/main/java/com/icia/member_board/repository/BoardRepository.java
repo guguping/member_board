@@ -56,4 +56,16 @@ public class BoardRepository {
     public List<memberBoardFileDTO> findFile(Long boardid) {
         return sql.selectList("memberboard.findFile",boardid);
     }
+
+    public void boardDelete(Long boardId) {
+        sql.delete("memberboard.boardDelete",boardId);
+    }
+
+    public memberBoardDTO findByBoard(Long boardId) {
+        return sql.selectOne("memberboard.findByBoard",boardId);
+    }
+
+    public void updateBoard(memberBoardDTO memberBoardDTO) {
+        sql.update("memberboard.updateBoard",memberBoardDTO);
+    }
 }

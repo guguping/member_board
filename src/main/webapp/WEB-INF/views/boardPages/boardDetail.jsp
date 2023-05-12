@@ -21,6 +21,7 @@
         margin: auto;
         border: 1px solid black;
     }
+
     table tr th {
         border: 1px solid black;
     }
@@ -68,13 +69,24 @@
             <td colspan="6"><textarea id="editor1" name="boardContents"
                                       COLS="104" ROWS="38" readonly>${boardDTO.boardContents}</textarea></td>
         </tr>
-        <tr>
-            <th colspan="6">
-                <input type="button" value="수정" onclick="goUpdate()">
-                <input type="button" value="삭제" onclick="goDelete()">
-                <input type="button" value="목록" onclick="goList()">
-            </th>
-        </tr>
+        <c:choose>
+            <c:when test="${boardDTO.memberId == sessionScope.memberID}">
+                <tr>
+                    <th colspan="6">
+                        <input type="button" value="수정" onclick="goUpdate()">
+                        <input type="button" value="삭제" onclick="goDelete()">
+                        <input type="button" value="목록" onclick="goList()">
+                    </th>
+                </tr>
+            </c:when>
+            <c:when test="${sessionScope.memberID == 1}">
+                <tr>
+                    <th colspan="6">
+                        <input type="button" value="삭제" onclick="goDelete()">
+                    </th>
+                </tr>
+            </c:when>
+        </c:choose>
         <tr>
             <th colspan="6">댓글</th>
         </tr>
@@ -112,7 +124,8 @@
         <tfoot>
         <tr>
             <th colspan="6"><label for="commentWriter" style="float: left">작성자: </label>
-                <input type="text" name="commentWriter" id="commentWriter" value="${memberDTO.memberEmail}" readonly style="float: left">
+                <input type="text" name="commentWriter" id="commentWriter" value="${memberDTO.memberEmail}" readonly
+                       style="float: left">
                 <label for="commentContents" style="margin-right: 187px">내용</label>
                 <input type="button" value="등록" style="float: right" onclick="helloComment(${boardDTO.id})">
             </th>
@@ -127,16 +140,28 @@
 </body>
 <script>
     const goUpdate = () => {
-
+        const type = '${type}';
+        const q = '${q}';
+        const page = '${page}';
+        const boardId = '${boardDTO.id}'
+        location.href = "/board/update?boardId=" + boardId + "&page=" + page + "&type=" + type + "&q=" + q;
     }
     const goDelete = () => {
-
+        const boardId = '${boardDTO.id}';
+        const page = '${page}';
+        const type = '${type}';
+        const q = '${q}';
+        let confirmResult = confirm("정말 삭제하시겠습니까?");
+        if (confirmResult) {
+            location.href = "/board/delete?boardId="+boardId+"&page="+page+"&type="+type+"&q="+q;
+        }
+        alert("삭제 완료!");
     }
     const goList = () => {
         const type = '${type}';
         const q = '${q}';
         const page = '${page}';
-        location.href = "/board/list?page="+page +"&type="+type + "&q=" +q;
+        location.href = "/board/list?page=" + page + "&type=" + type + "&q=" + q;
     }
     const helloComment = (id) => {
         const commentWriter = document.getElementById('commentWriter').value;
@@ -174,8 +199,8 @@
             }
         })
     }
-    CKEDITOR.replace('editor1',{
-        height : '450px'
+    CKEDITOR.replace('editor1', {
+        height: '450px'
     });
 </script>
 </html>

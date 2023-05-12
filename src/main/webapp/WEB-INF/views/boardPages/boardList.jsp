@@ -18,6 +18,7 @@
         margin: auto;
         border: 1px solid black;
     }
+
     table tr th {
         border: 1px solid black;
     }
@@ -79,15 +80,16 @@
                 </th>
             </tr>
             <tr>
-                <th colspan="5" style="padding: 5px"><c:choose>
-                    <c:when test="${paging.page<=1}">
-                        <a style="color: grey">[이전]</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="/board/list?page=${paging.page-1}&q=${q}&type=${type}"
-                           style="text-decoration: none;color: black">[이전]</a>
-                    </c:otherwise>
-                </c:choose>
+                <th colspan="5" style="padding: 5px">
+                    <c:choose>
+                        <c:when test="${paging.page<=1}">
+                            <a style="color: grey">[이전]</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/board/list?page=${paging.page-1}&q=${q}&type=${type}"
+                               style="text-decoration: none;color: black">[이전]</a>
+                        </c:otherwise>
+                    </c:choose>
                     <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i" step="1">
                         <c:choose>
                             <c:when test="${i eq paging.page}">

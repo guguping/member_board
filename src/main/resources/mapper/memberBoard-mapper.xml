@@ -87,4 +87,16 @@
         insert into member_board_comment_table(commentWriter,commentContents,boardId)
             values (#{commentWriter},#{commentContents},#{boardId})
     </insert>
+    <delete id="boardDelete" parameterType="Long">
+        delete from memberboard_table where id = #{boardId}
+    </delete>
+    <select id="findByBoard" parameterType="Long" resultType="board">
+        select * from memberboard_table where id = #{boardId}
+    </select>
+    <update id="updateBoard" parameterType="board">
+        update memberboard_table
+        set boardTitle    = #{boardTitle},
+            boardContents = #{boardContents}
+        where id = #{id}
+    </update>
 </mapper>

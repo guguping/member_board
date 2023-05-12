@@ -25,7 +25,7 @@ public class MemberController {
     public String saveMember(@ModelAttribute memberDTO memberDTO) throws IOException {
         System.out.println("memberDTO = " + memberDTO);
         memberService.saveMember(memberDTO);
-        return "memberPages/memberList";
+        return "memberPages/memberLogin";
     }
     @GetMapping("/member/login")
     public String memberLogin(){

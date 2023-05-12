@@ -59,7 +59,7 @@ public class BoardService {
         int pageLimit = 10;
         int blockLimit = 3;
         int boardCount = boardRepository.boardCount();
-        int maxPage = (int)(Math.ceil((double)boardCount)/pageLimit);
+        int maxPage = (int)(Math.ceil((double)boardCount / pageLimit));
         int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
         int endPage = startPage + blockLimit -1 ;
         if(endPage>maxPage){
@@ -116,5 +116,17 @@ public class BoardService {
 
     public List<memberBoardFileDTO> findFile(Long id) {
         return boardRepository.findFile(id);
+    }
+
+    public void boardDelete(Long boardId) {
+        boardRepository.boardDelete(boardId);
+    }
+
+    public memberBoardDTO findByboard(Long boardId) {
+        return boardRepository.findByBoard(boardId);
+    }
+
+    public void updateBoard(memberBoardDTO memberBoardDTO) {
+        boardRepository.updateBoard(memberBoardDTO);
     }
 }
