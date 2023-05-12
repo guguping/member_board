@@ -3,6 +3,7 @@ package com.icia.member_board.repository;
 import com.icia.member_board.dto.memberBoardDTO;
 import com.icia.member_board.dto.memberBoardFileDTO;
 import com.icia.member_board.dto.memberDTO;
+import com.icia.member_board.dto.memberFileDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -67,5 +68,9 @@ public class BoardRepository {
 
     public void updateBoard(memberBoardDTO memberBoardDTO) {
         sql.update("memberboard.updateBoard",memberBoardDTO);
+    }
+
+    public memberFileDTO memberFile(Long memberID) {
+        return sql.selectOne("memberboard.memberFile",memberID);
     }
 }

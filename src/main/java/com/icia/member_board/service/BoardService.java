@@ -1,9 +1,6 @@
 package com.icia.member_board.service;
 
-import com.icia.member_board.dto.memberBoardDTO;
-import com.icia.member_board.dto.memberBoardFileDTO;
-import com.icia.member_board.dto.memberDTO;
-import com.icia.member_board.dto.pageDTO;
+import com.icia.member_board.dto.*;
 import com.icia.member_board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -128,5 +125,9 @@ public class BoardService {
 
     public void updateBoard(memberBoardDTO memberBoardDTO) {
         boardRepository.updateBoard(memberBoardDTO);
+    }
+
+    public memberFileDTO memberFile(Long memberID) {
+        return boardRepository.memberFile(memberID);
     }
 }

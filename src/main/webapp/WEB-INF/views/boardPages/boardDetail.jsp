@@ -153,7 +153,7 @@
         const q = '${q}';
         let confirmResult = confirm("정말 삭제하시겠습니까?");
         if (confirmResult) {
-            location.href = "/board/delete?boardId="+boardId+"&page="+page+"&type="+type+"&q="+q;
+            location.href = "/board/delete?boardId=" + boardId + "&page=" + page + "&type=" + type + "&q=" + q;
         }
         alert("삭제 완료!");
     }

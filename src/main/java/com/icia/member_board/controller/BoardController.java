@@ -129,5 +129,12 @@ public class BoardController {
         boardService.updateBoard(memberBoardDTO);
         return "redirect:/board/detail?id="+memberBoardDTO.getId()+"&page="+page+"&type="+type+"&q="+q;
     }
-
+    @GetMapping("/board/myPage")
+    public String myPage(HttpSession session,Model model){
+        memberFileDTO memberFileDTO =  boardService.memberFile((Long)session.getAttribute("memberID"));
+        memberDTO memberDTO = boardService.findById((Long)session.getAttribute("memberID"));
+        model.addAttribute("memberFile",memberFileDTO);
+        model.addAttribute("memberDTO",memberDTO);
+        return "boardPages/boardMyPage";
+    }
 }

@@ -37,6 +37,11 @@
                 <th>작성자</th>
                 <th>조회수</th>
                 <th>작성시간</th>
+                <c:choose>
+                    <c:when test="${sessionScope.memberID == 1}">
+                        <th>X</th>
+                    </c:when>
+                </c:choose>
             </tr>
             <c:forEach items="${boardList}" var="boardList">
                 <tr>
@@ -62,12 +67,26 @@
                                 value="${boardList.boardCreatedDate}"
                                 pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></a>
                     </td>
+                    <c:choose>
+                        <c:when test="${sessionScope.memberID == 1}">
+                            <td style="border: 1px solid black;text-align: center;padding: 5px">
+                                <a href="/board/delete?boardId=${boardList.id}&page=${paging.page}&type=${type}&q=${q}">삭제</a>
+                            </td>
+                        </c:when>
+                    </c:choose>
                 </tr>
             </c:forEach>
             </thead>
             <tbody>
             <tr>
+                <c:choose>
+                <c:when test="${sessionScope.memberID==1}">
+                <th colspan="6" style="padding: 5px">
+                    </c:when>
+                    <c:otherwise>
                 <th colspan="5" style="padding: 5px">
+                    </c:otherwise>
+                    </c:choose>
                     <form action="/board/list" method="get">
                         <select name="type">
                             <option value="boardTitle">제목</option>
@@ -80,7 +99,14 @@
                 </th>
             </tr>
             <tr>
+                <c:choose>
+                <c:when test="${sessionScope.memberID==1}">
+                <th colspan="6" style="padding: 5px">
+                    </c:when>
+                    <c:otherwise>
                 <th colspan="5" style="padding: 5px">
+                    </c:otherwise>
+                    </c:choose>
                     <c:choose>
                         <c:when test="${paging.page<=1}">
                             <a style="color: grey">[이전]</a>
@@ -117,4 +143,17 @@
 </section>
 <%@include file="../component/footer.jsp" %>
 </body>
+<script>
+    const goDelete = () => {
+        const boardId = '${boardDTO.id}';
+        const page = '${page}';
+        const type = '${type}';
+        const q = '${q}';
+        let confirmResult = confirm("정말 삭제하시겠습니까?");
+        if (confirmResult) {
+            location.href = "/board/delete?boardId=" + boardId + "&page=" + page + "&type=" + type + "&q=" + q;
+        }
+        alert("삭제 완료!");
+    }
+</script>
 </html>

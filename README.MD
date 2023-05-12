@@ -5,6 +5,7 @@
 drop table if exists members_table;
 create table members_table(
 id bigint auto_increment primary key,
+memberName varchar(10) not null,
 memberEmail varchar(50) unique,
 memberPassword varchar(20) not null,
 memberMobile varchar(30) not null,
@@ -56,6 +57,7 @@ id bigint auto_increment primary key,
 boardId bigint,
 memberId bigint,
 commentWriter varchar(50),
+commentContents varchar(100),
 commentCreatedDate datetime default now(),
 constraint fk_board_comment foreign key (boardId) references memberBoard_table(id) on delete cascade,
 constraint fk_member_comment foreign key (memberId) references members_table(id) on delete cascade

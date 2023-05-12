@@ -32,6 +32,12 @@
                     <th style="padding: 5px"><input type="password" name="memberPassword" id="memberPassword"></th>
                 </tr>
                 <tr>
+                    <th><label for="memberName">이름</label></th>
+                </tr>
+                <tr>
+                    <th style="padding: 5px"><input type="text" name="memberName" id="memberName"></th>
+                </tr>
+                <tr>
                     <th><label for="memberMobile">전화번호</label></th>
                 </tr>
                 <tr>

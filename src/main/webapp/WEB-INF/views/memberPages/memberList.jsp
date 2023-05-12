@@ -32,7 +32,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <%--<th>회원프로필</th>--%>
+                <th>회원이름</th>
                 <th>회원이메일</th>
                 <th>회원비밀번호</th>
                 <th>회원전화번호</th>
@@ -41,6 +41,9 @@
                 <tr>
                     <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a>${member.id}</a>
+                    </td>
+                    <td style="border: 1px solid black;text-align: center;padding: 5px">
+                        <a>${member.memberName}</a>
                     </td>
                     <td style="border: 1px solid black;text-align: center;padding: 5px">
                         <a>${member.memberEmail}</a>
@@ -56,7 +59,7 @@
             </thead>
             <tbody>
             <tr>
-                <th colspan="4" style="padding: 5px">
+                <th colspan="5" style="padding: 5px">
                     <form action="/member/list" method="get">
                         <select name="type">
                             <option value="memberEmail">아이디</option>
@@ -68,7 +71,7 @@
                 </th>
             </tr>
             <tr>
-                <th colspan="4" style="padding: 5px"><c:choose>
+                <th colspan="5" style="padding: 5px"><c:choose>
                     <c:when test="${paging.page<=1}">
                         <a style="color: grey">[이전]</a>
                     </c:when>

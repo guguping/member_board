@@ -23,7 +23,6 @@ public class MemberController {
     }
     @PostMapping("/member/save")
     public String saveMember(@ModelAttribute memberDTO memberDTO) throws IOException {
-        System.out.println("memberDTO = " + memberDTO);
         memberService.saveMember(memberDTO);
         return "memberPages/memberLogin";
     }
@@ -36,6 +35,7 @@ public class MemberController {
         memberDTO dto = memberService.loginMember(memberDTO);
         if(dto != null) {
             session.setAttribute("memberID",dto.getId());
+            session.setAttribute("memberEmail",dto.getMemberEmail());
             return "boardPages/boardMain";
         } else {
             String loginFalse = "아이디 또는 비밀번호를 잘못 입력했습니다."+"<br>"+"입력하신 내용을 다시 확인해주세요.";
