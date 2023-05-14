@@ -30,36 +30,41 @@
 <section>
     <div>
         <h2 style="text-align: center">My Page</h2>
-        <form action="memberUpdate" method="post" id="gosave">
+        <form action="/board/myPageUpdate" method="post" id="gosave">
             <input type="text" name="id" style="display: none" value="${memberDTO.id}">
             <table style="margin-top: 10px;">
                 <tr>
                     <th style="padding: 5px;" colspan="3">회원 프로필</th>
                 </tr>
                 <tr>
-                    <th rowspan="5"><img src="${pageContext.request.contextPath}/upload/${memberFile.storedFileName}" alt=""
-                             style="width: 100px;height: 100px"></th>
+                    <th rowspan="5"><img src="${pageContext.request.contextPath}/upload/${memberFile.storedFileName}"
+                                         alt=""
+                                         style="width: 100px;height: 100px"></th>
                 </tr>
                 <tr>
                     <th style="padding: 5px;">이름</th>
-                    <th><input type="text" id="member-name" name="memberName" value="${memberDTO.memberName}" disabled="disabled" style="padding: 5px;"></th>
+                    <th><input type="text" id="member-name" name="memberName" value="${memberDTO.memberName}"
+                               disabled="disabled" style="padding: 5px;"></th>
                 </tr>
                 <tr>
                     <th style="padding: 5px;">아이디</th>
-                    <th><input type="text" id="member-email" name="memberEmail" value="${memberDTO.memberEmail}" disabled="disabled" style="padding: 5px;"></th>
+                    <th><input type="text" id="member-email" name="memberEmail" value="${memberDTO.memberEmail}"
+                               disabled="disabled" style="padding: 5px;"></th>
                 </tr>
                 <tr>
                     <th style="padding: 5px;">비밀번호</th>
-                    <th><input type="password" id="member-password" name="memberPassword" value="${memberDTO.memberPassword}" disabled="disabled" style="padding: 5px;"></th>
+                    <th><input type="password" id="member-password" name="memberPassword"
+                               value="${memberDTO.memberPassword}" disabled="disabled" style="padding: 5px;"></th>
                 </tr>
                 <tr>
                     <th style="padding: 5px;">전화번호</th>
-                    <th><input type="text" id="member-mobile" name="memberMobile" value="${memberDTO.memberMobile}" disabled="disabled" style="padding: 5px;"></th>
+                    <th><input type="text" id="member-mobile" name="memberMobile" value="${memberDTO.memberMobile}"
+                               disabled="disabled" style="padding: 5px;"></th>
                 </tr>
                 <tr>
                     <th colspan="3" style="padding: 5px;">
                         <input type="button" value="정보 수정" id="openUpdata" onclick="openUpdate()">
-                        <input type="button" value="회원 탈퇴">
+                        <input type="button" value="회원 탈퇴" id="deleteUser" onclick="outUser()">
                     </th>
                 </tr>
             </table>
@@ -73,12 +78,40 @@
     const name = document.getElementById("member-name");
     const password = document.getElementById("member-password");
     const mobile = document.getElementById("member-mobile");
-    const submit = document.getElementById("submit");
+    const openUpdata = document.getElementById('openUpdata');
+    const gosave = document.getElementById('gosave');
+
+
     const openUpdate = () => {
         name.disabled = false;
         password.disabled = false;
         mobile.disabled = false;
         email.disabled = false;
+        openUpdata.setAttribute("onclick", "changed()");
     }
+    const changed = () => {
+        const passwordResult = '${memberDTO.memberPassword}';
+        const promptResult = prompt("기존 비밀번호 확인.", "입력해주세요.");
+        if (passwordResult != promptResult) {
+            alert("비밀번호 확인 필요.");
+        } else if (email.value == "guping"||email.value == "GUPING") {
+            alert("사용불가능한 email입니다.");
+        } else {
+            alert("수정 완료!\n로그아웃 됩니다");
+            gosave.submit();
+        }
+    };
+
+    const outUser = () => {
+        const passwordResult = '${memberDTO.memberPassword}';
+        const promptResult = prompt("기존 비밀번호 확인.", "입력해주세요.");
+        if (passwordResult != promptResult) {
+            alert("비밀번호 확인 필요.");
+        } else {
+            alert("탈퇴 완료!");
+            location.href = "/board/deleteUser?id=" + '${memberDTO.id}';
+        }
+    }
+
 </script>
 </html>

@@ -104,4 +104,8 @@ public class MemberService {
         pageDTO.setStartPage(startPage);
         return pageDTO;
     }
+
+    public String emailCheck(String memberEmail) {
+        return memberRepository.emailCheck(memberEmail);
+    }
 }

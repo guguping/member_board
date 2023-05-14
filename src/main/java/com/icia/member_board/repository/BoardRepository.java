@@ -73,4 +73,12 @@ public class BoardRepository {
     public memberFileDTO memberFile(Long memberID) {
         return sql.selectOne("memberboard.memberFile",memberID);
     }
+
+    public void memberUpdate(memberDTO memberDTO) {
+        sql.update("memberboard.memberUpdate",memberDTO);
+    }
+
+    public void deleteUser(Long memberId) {
+        sql.delete("memberboard.deleteUser",memberId);
+    }
 }

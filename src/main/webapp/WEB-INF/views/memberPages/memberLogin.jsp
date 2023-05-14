@@ -30,7 +30,7 @@
                     <th><label for="memberPassword">비밀번호</label></th>
                 </tr>
                 <tr>
-                    <th style="padding: 5px"><input type="text" name="memberPassword" id="memberPassword"></th>
+                    <th style="padding: 5px"><input type="password" name="memberPassword" id="memberPassword"></th>
                 </tr>
                 <tr>
                     <th><p style="color: red">${loginFalse}</p></th>

@@ -4,6 +4,8 @@ import com.icia.member_board.dto.memberDTO;
 import com.icia.member_board.dto.pageDTO;
 import com.icia.member_board.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -63,5 +65,14 @@ public class MemberController {
         model.addAttribute("q",q);
         model.addAttribute("type",type);
         return "memberPages/memberList";
+    }
+    @PostMapping("/member/emailCheck")
+    public ResponseEntity emailCheck(@RequestParam("memberEmail") String memberEmail){
+        String dbEmail = memberService.emailCheck(memberEmail);
+        if (dbEmail != null){
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }else{
+            return new ResponseEntity(HttpStatus.OK);
+        }
     }
 }

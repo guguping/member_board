@@ -151,3 +151,27 @@ constraint fk_member_comment foreign key (memberId) references members_table(id)
     });
 ```
 
+## 버튼 onclick - 스크립트 변경
+```javascript
+    <input type="button" value="정보 수정" id="openUpdata" onclick="openUpdate()">
+
+    const openUpdate = () => {
+        name.disabled = false;
+        password.disabled = false;
+        mobile.disabled = false;
+        email.disabled = false;
+        openUpdata.setAttribute("onclick", "changed()");
+    }
+    const changed = () => {
+        const passwordResult = '${memberDTO.memberPassword}';
+        const promptResult = prompt("기존 비밀번호 확인.", "입력해주세요.");
+        if (passwordResult != promptResult) {
+            alert("비밀번호 확인 필요.");
+        } else if (email.value == "guping"||email.value == "GUPING") {
+            alert("사용불가능한 email입니다.");
+        } else {
+            alert("수정 완료!\n로그아웃 됩니다");
+            gosave.submit();
+        }
+    };
+```

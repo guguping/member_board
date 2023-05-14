@@ -42,4 +42,8 @@ public class MemberRepository {
     public int memberSearchCount(Map<String, Object> searchPagingParams) {
         return sql.selectOne("memberboard.searchCount",searchPagingParams);
     }
+
+    public String emailCheck(String memberEmail) {
+        return sql.selectOne("memberboard.emailCheck",memberEmail);
+    }
 }

@@ -137,4 +137,14 @@ public class BoardController {
         model.addAttribute("memberDTO",memberDTO);
         return "boardPages/boardMyPage";
     }
+    @PostMapping("/board/myPageUpdate")
+    public String memberUpdate(@ModelAttribute memberDTO memberDTO){
+        boardService.memberUpdate(memberDTO);
+        return "redirect:/board/logout";
+    }
+    @GetMapping("/board/deleteUser")
+    public String deleteUser(@RequestParam("id") Long memberId){
+        boardService.deleteUser(memberId);
+        return "redirect:/board/logout";
+    }
 }

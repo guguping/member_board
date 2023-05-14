@@ -70,7 +70,7 @@
                     <c:choose>
                         <c:when test="${sessionScope.memberID == 1}">
                             <td style="border: 1px solid black;text-align: center;padding: 5px">
-                                <a href="/board/delete?boardId=${boardList.id}&page=${paging.page}&type=${type}&q=${q}">삭제</a>
+                                <a href="/board/delete?boardId=${boardList.id}&page=${paging.page}&type=${type}&q=${q}" style="text-decoration: none; color: black;">삭제</a>
                             </td>
                         </c:when>
                     </c:choose>

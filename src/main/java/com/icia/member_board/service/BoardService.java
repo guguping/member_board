@@ -130,4 +130,12 @@ public class BoardService {
     public memberFileDTO memberFile(Long memberID) {
         return boardRepository.memberFile(memberID);
     }
+
+    public void memberUpdate(memberDTO memberDTO) {
+        boardRepository.memberUpdate(memberDTO);
+    }
+
+    public void deleteUser(Long memberId) {
+        boardRepository.deleteUser(memberId);
+    }
 }
