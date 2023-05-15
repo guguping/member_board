@@ -47,9 +47,9 @@
                                disabled="disabled" style="padding: 5px;"></th>
                 </tr>
                 <tr>
-                    <th style="padding: 5px;">아이디</th>
+                    <th style="padding: 5px;">이메일</th>
                     <th><input type="text" id="member-email" name="memberEmail" value="${memberDTO.memberEmail}"
-                               disabled="disabled" style="padding: 5px;"></th>
+                               disabled="disabled" style="padding: 5px;" onblur="email_check()"></th>
                 </tr>
                 <tr>
                     <th style="padding: 5px;">비밀번호</th>
@@ -60,6 +60,9 @@
                     <th style="padding: 5px;">전화번호</th>
                     <th><input type="text" id="member-mobile" name="memberMobile" value="${memberDTO.memberMobile}"
                                disabled="disabled" style="padding: 5px;"></th>
+                </tr>
+                <tr id="check-see" style="display: none;" >
+                    <th id="emailResult"></th>
                 </tr>
                 <tr>
                     <th colspan="3" style="padding: 5px;">
@@ -91,16 +94,57 @@
     }
     const changed = () => {
         const passwordResult = '${memberDTO.memberPassword}';
+        const memberidResult = '${memberDTO.id}';
         const promptResult = prompt("기존 비밀번호 확인.", "입력해주세요.");
         if (passwordResult != promptResult) {
             alert("비밀번호 확인 필요.");
-        } else if (email.value == "guping"||email.value == "GUPING") {
-            alert("사용불가능한 email입니다.");
-        } else {
-            alert("수정 완료!\n로그아웃 됩니다");
-            gosave.submit();
+        } else if (memberidResult != 1) {
+            if (email.value == "guping" || email.value == "GUPING") {
+                alert("사용불가능한 email입니다.");
+            } else if (!(email_check())) {
+                alert("중복된 이메일입니다");
+            } else {
+                alert("수정 완료!\n로그아웃 됩니다");
+                gosave.submit();
+            }
         }
     };
+    const email_check = () => {
+        let memberEmail = document.getElementById('member-email');
+        let emailResult = document.getElementById('emailResult');
+        let checkSee = document.getElementById('check-see');
+        $.ajax({
+            type: "post",
+            url: "/member/emailCheck",
+            async: false,
+            data: {
+                "memberEmail": memberEmail.value
+            },
+            success: function (res) {
+                if (memberEmail.value.length == 0) {
+                    emailResult.colSpan = 3;
+                    emailResult.style.color = "red";
+                    emailResult.innerHTML = "필수 입력입니다";
+                    checkSee.style.display = "table-row";
+                    resResult = false;
+                } else {
+                    emailResult.colSpan = 3;
+                    emailResult.style.color = "green";
+                    emailResult.innerHTML = "사용가능한 이메일";
+                    checkSee.style.display = "table-row";
+                    resResult = true;
+                }
+            },
+            error: function () {
+                emailResult.colSpan = 3;
+                emailResult.style.color = "red";
+                emailResult.innerHTML = "중복된 아이디입니다";
+                checkSee.style.display = "table-row";
+                resResult = false;
+            }
+        })
+        return resResult;
+    }
 
     const outUser = () => {
         const passwordResult = '${memberDTO.memberPassword}';

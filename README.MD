@@ -175,3 +175,19 @@ constraint fk_member_comment foreign key (memberId) references members_table(id)
         }
     };
 ```
+## DAY 57 추가
+```javascript
+<tr id="check-see" style="display: none;" >
+    <th id="emailResult"></th>
+</tr>
+
+if (memberEmail.value.length == 0) {
+    emailResult.colSpan = 3;
+    emailResult.style.color = "red";
+    emailResult.innerHTML = "필수 입력입니다";
+    checkSee.style.display = "table-row";
+    resResult = false;
+} 
+```
+#### table의 display의 기본값은 table 이기 때문에 display none으로 css를 변경 후,
+#### 다시 보여주기 위해서는 display table 속성으로 시작해야한다.
