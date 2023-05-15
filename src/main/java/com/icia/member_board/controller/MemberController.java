@@ -67,11 +67,12 @@ public class MemberController {
         return "memberPages/memberList";
     }
     @PostMapping("/member/emailCheck")
-    public ResponseEntity emailCheck(@RequestParam("memberEmail") String memberEmail){
+    public ResponseEntity emailCheck(@RequestParam("memberEmail") String memberEmail,
+                                     HttpSession session){
         String dbEmail = memberService.emailCheck(memberEmail);
-        if (dbEmail != null){
+        if (dbEmail != null && !(session.getAttribute("memberEmail").equals(memberEmail))){
             return new ResponseEntity(HttpStatus.CONFLICT);
-        }else{
+        } else {
             return new ResponseEntity(HttpStatus.OK);
         }
     }

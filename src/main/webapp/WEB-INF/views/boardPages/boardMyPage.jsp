@@ -127,7 +127,7 @@
                     emailResult.innerHTML = "필수 입력입니다";
                     checkSee.style.display = "table-row";
                     resResult = false;
-                } else {
+                }  else {
                     emailResult.colSpan = 3;
                     emailResult.style.color = "green";
                     emailResult.innerHTML = "사용가능한 이메일";
